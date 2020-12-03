@@ -1,8 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
+import CustomButton from './src/views/CustomButton';
 
 export default function App() {
   const [selectedImage, setSelectedImage] = React.useState(null);
@@ -48,19 +48,13 @@ export default function App() {
         style={styles.thumbnail} />
       {(selectedImage != null) && (
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
-            <Text style={styles.buttonText}>Share this photo</Text>
-          </TouchableOpacity>
+          <CustomButton onPress={openShareDialogAsync} text="Share this photo"></CustomButton>
           <View style={{width: 20}}></View>
-          <TouchableOpacity onPress={clearSelected} style={styles.button}>
-            <Text style={styles.buttonText}>Clear</Text>
-          </TouchableOpacity>
+          <CustomButton onPress={clearSelected} text="Clear"></CustomButton>
         </View>
       )}
       <View style={{height: 20}}></View>
-      <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-        <Text style={styles.buttonText}>Open Gallery</Text>
-      </TouchableOpacity>
+      <CustomButton onPress={openImagePickerAsync} text="Open Gallery"></CustomButton>
     </View>
   );
 }
@@ -91,16 +85,4 @@ const styles = StyleSheet.create({
     height: 159,
     marginBottom: 10,
   },
-  button: {
-    backgroundColor: 'blue',
-    width: '50%',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  buttonText: {
-    fontSize: 20,
-    color: '#fff',
-    textAlign: 'center',
-  }, 
 });
